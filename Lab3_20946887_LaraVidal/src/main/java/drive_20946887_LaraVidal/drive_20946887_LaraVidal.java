@@ -198,6 +198,195 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
         }
     }
 
+    public boolean checkRouteExists(ArrayList<String> route) {
+        if (route.size() == 0) {
+            return true;
+        }
+        for (element_20946887_LaraVidal element: this.content) {
+            if (element.getName().equals(route.get(0)) && element instanceof folder_20946887_LaraVidal) {
+                route.remove(0);
+                folder_20946887_LaraVidal folder = (folder_20946887_LaraVidal) element;
+                return folder.checkRouteExists(route);
+            }
+        }
+        return false;
+    }
+    @Override
+    public void removeFromContent(String pattern) {
+        ArrayList<element_20946887_LaraVidal> elements = new ArrayList<>();
+        for (element_20946887_LaraVidal element: this.content) {
+            if (!element.nameMatches(pattern)) {
+                elements.add(element);
+            }
+        }
+        this.setContent(elements);
+    }
+
+    @Override
+    public void renameFromContent(String oldName, String newName) {
+        if (this.getNamesFromContent().contains(newName)) {
+            return;
+        }
+        ArrayList<element_20946887_LaraVidal> elements = new ArrayList<>();
+        for (element_20946887_LaraVidal element: this.content) {
+            if (element.getName().equals(oldName)) {
+                element.setName(newName);
+            }
+            elements.add(element);
+        }
+        this.setContent(elements);
+    }
+
+    @Override
+    public ArrayList<element_20946887_LaraVidal> getFromContent(String pattern) {
+        ArrayList<element_20946887_LaraVidal> elements = new ArrayList<>();
+        for (element_20946887_LaraVidal element: this.content) {
+            if (element.nameMatches(pattern)) {
+                 elements.add(element);
+            }
+        }
+        return elements;
+    }
+
+    @Override
+    public ArrayList<String> getNamesFromContent() {
+        ArrayList<String> names = new ArrayList<>();
+        for (element_20946887_LaraVidal element : this.content) {
+            names.add(element.getName());
+        }
+        return names;
+    }
+
+    @Override
+    public void addToContent(ArrayList<element_20946887_LaraVidal> newElements) {
+        ArrayList<String> names = new ArrayList<>();
+        for (element_20946887_LaraVidal element: newElements) {
+            names.add(element.getName());
+        }
+        for (element_20946887_LaraVidal element : this.content) {
+            if (!names.contains(element.getName())) {
+                newElements.add(element);
+            } else {
+                System.out.println("El archivo " + element.getName() + " fue reemplazado");
+            }
+        }
+        this.setContent(newElements);
+        System.out.println("El/Los elementos fueron añadidos correctamente");
+    }
+
+    /**
+     * Encrypt route.
+     *
+     * @param password the password
+     * @param pattern  the pattern
+     * @param route    the route
+     */
+    public void encryptRoute(String password, String pattern, ArrayList<String> route) {
+        if (route.size() == 0) {
+            this.encryptContent(password, pattern);
+            return;
+        }
+        ArrayList<element_20946887_LaraVidal> newContent = this.getContent();
+        String folderName = route.get(0);
+        for (element_20946887_LaraVidal element: newContent) {
+            if (element.getName().equals(folderName) && element instanceof folder_20946887_LaraVidal) {
+                route.remove(0);
+                ((folder_20946887_LaraVidal) element).encryptRoute(password, pattern, route);
+            }
+        }
+        this.setContent(newContent);
+    }
+
+    /**
+     * Decrypt route.
+     *
+     * @param password the password
+     * @param pattern  the pattern
+     * @param route    the route
+     */
+    public void decryptRoute(String password, String pattern, ArrayList<String> route) {
+        if (route.size() == 0) {
+            this.decryptContent(password, pattern);
+            return;
+        }
+        ArrayList<element_20946887_LaraVidal> newContent = this.getContent();
+        String folderName = route.get(0);
+        for (element_20946887_LaraVidal element: newContent) {
+            if (element.getName().equals(folderName) && element instanceof folder_20946887_LaraVidal) {
+                route.remove(0);
+                ((folder_20946887_LaraVidal) element).decryptRoute(password, pattern, route);
+            }
+        }
+        this.setContent(newContent);
+    }
+    public void encryptContent(String password, String pattern) {
+        for (element_20946887_LaraVidal element: this.content) {
+            if (element.nameMatches(pattern)) {
+                element.partialEncrypt(password);
+            }
+        }
+    }
+
+    public void decryptContent(String password, String pattern) {
+        for (element_20946887_LaraVidal element: this.content) {
+            if (element.nameMatches(pattern)) {
+                element.partialDecrypt(password);
+            }
+        }
+    }
+
+    /**
+     * Dir to route.
+     *
+     * @param route the route
+     * @param args  the args
+     */
+    public void dirToRoute(ArrayList<String> route, ArrayList<String> args) {
+        if (route.size() == 0) {
+            this.dirContent(args, "");
+            return;
+        }
+        for (element_20946887_LaraVidal element : this.content) {
+            if (element instanceof folder_20946887_LaraVidal && element.getName().equals(route.get(0))) {
+                route.remove(0);
+                ((folder_20946887_LaraVidal) element).dirToRoute(route, args);
+                return;
+            }
+        }
+    }
+
+    public void dirContent(ArrayList<String> args, String offset) {
+        if (args.contains("/o N")) {
+            this.content.sort(Comparator.comparing(element_20946887_LaraVidal::getName));
+        }
+        if (args.contains("/o -N")) {
+            this.content.sort(Comparator.comparing(element_20946887_LaraVidal::getName, Comparator.reverseOrder()));
+        }
+        if (args.contains("/o D")) {
+            this.content.sort(Comparator.comparing(element_20946887_LaraVidal::getCreationDate));
+        }
+        if (args.contains("/o -D")) {
+            this.content.sort(Comparator.comparing(element_20946887_LaraVidal::getCreationDate, Comparator.reverseOrder()));
+        }
+
+        for (element_20946887_LaraVidal element: this.content) {
+            if (element.getName().charAt(0) == '.') {
+                if (args.contains("/a")) {
+                    System.out.println(offset + element.getName());
+                    if (element instanceof folder_20946887_LaraVidal && args.contains("/s")) {
+                        ((folder_20946887_LaraVidal) element).dirContent(args, offset + "  ");
+                    }
+                }
+
+            } else {
+                System.out.println(offset + element.getName());
+                if (element instanceof folder_20946887_LaraVidal && args.contains("/s")) {
+                    ((folder_20946887_LaraVidal) element).dirContent(args, offset + "  ");
+                }
+
+            }
+        }
+    }
     
 }
 
