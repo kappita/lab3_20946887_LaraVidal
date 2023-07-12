@@ -8,8 +8,18 @@ import java.util.ArrayList;
  * The interface Has content 20946887 lara vidal.
  */
 public interface hasContent_20946887_LaraVidal {
+    /**
+     * Sets content.
+     *
+     * @param newContent the content
+     */
     void setContent(ArrayList<element_20946887_LaraVidal> newContent);
 
+    /**
+     * Gets content.
+     *
+     * @return the content
+     */
     ArrayList<element_20946887_LaraVidal> getContent();
     /**
      * Add to route.
@@ -123,7 +133,19 @@ public interface hasContent_20946887_LaraVidal {
      * @param route    la ruta en la que se desencripta
      */
     void decryptRoute(String password, String pattern, ArrayList<String> route);
+    /**
+     * Encripta el contenido del objeto.
+     *
+     * @param password la contraseña de encriptación
+     * @param pattern  el patrón de archivos a encriptar
+     */
     void encryptContent(String password, String pattern);
+    /**
+     * Desencripta el contenido del objeto.
+     *
+     * @param password la contraseña de desencriptación
+     * @param pattern  el patrón de archivos a desencriptar
+     */
     void decryptContent(String password, String pattern);
 
     /**
