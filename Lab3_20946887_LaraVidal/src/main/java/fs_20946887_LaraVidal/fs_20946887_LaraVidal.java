@@ -1,4 +1,5 @@
 package fs_20946887_LaraVidal;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import drive_20946887_LaraVidal.drive_20946887_LaraVidal;
@@ -9,22 +10,55 @@ import file_20946887_LaraVidal.*;
 import routeParser_20946887_LaraVidal.routeParser_20946887_LaraVidal;
 
 public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
+    /**
+     * El nombre del sistema.
+     */
     String name;
+    /**
+     * Lista de usuarios del sistema.
+     */
     ArrayList<String> users;
 
+    /**
+     * Drives del sistema.
+     */
     ArrayList<drive_20946887_LaraVidal> drives;
 
+    /**
+     * El usuario actual del sistema.
+     */
     String currentU;
 
+    /**
+     * El drive actual del sistema.
+     */
     String currentD;
 
+    /**
+     * La ruta actual del sistema.
+     */
     ArrayList<String> currentR;
 
+    /**
+     * Fecha de creación del sistema.
+     */
     Date creationDate;
 
+    /**
+     * Fecha de modificación del sistema.
+     */
     Date modificationDate;
 
+    /**
+     * La papelera del sistema.
+     */
     ArrayList<trash_20946887_LaraVidal> trash;
+
+    /**
+     * Instancia un fs.
+     *
+     * @param name nombre del sistema
+     */
 
     public fs_20946887_LaraVidal (String name) {
         this.name = name;
@@ -54,6 +88,11 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
                 '}';
     }
 
+    /**
+     * Obtiene los usuarios del sistema.
+     *
+     * @return Los usuarios del sistema
+     */
     public ArrayList<String> getUsers() {
         return new ArrayList<>(this.users);
     }
@@ -311,39 +350,78 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
         this.users = users;
         this.modificationDate = new Date();
     }
+
+    /**
+     * Obtiene los drives del sistema.
+     *
+     * @return los drives
+     */
+
     public ArrayList<drive_20946887_LaraVidal> getDrives() {
         return new ArrayList<>(this.drives);
     }
+
+    /**
+     * Modifica los drives del sistema.
+     *
+     * @param drives los nuevos drives.
+     */
 
     public void setDrives(ArrayList<drive_20946887_LaraVidal> drives) {
         this.drives = drives;
         this.setModificationDate();
     }
 
+    /**
+     * Obtiene el usuario actual del sistema.
+     *
+     * @return el usuario actual
+     */
     public String getCurrentU() {
         return currentU;
     }
 
+    /**
+     * Modifica el usuario actual del sistema
+     *
+     * @param currentU el usuario actual
+     */
     public void setCurrentU(String currentU) {
         this.currentU = currentU;
         this.setModificationDate();
     }
 
-
+    /**
+     * Modifica el drive actual del sistema
+     *
+     * @param currentD el nuevo drive actual
+     */
     public void setCurrentD(String currentD) {
         this.currentD = currentD;
         this.setModificationDate();
     }
 
+    /**
+     * Obtiene la ruta actual del sistema
+     *
+     * @return la ruta actual
+     */
     public ArrayList<String> getCurrentR() {
         return new ArrayList<>(this.currentR);
     }
-
+    /**
+     * Modifica la ruta actual del sistema
+     *
+     * @param currentR la nueva ruta del sistema
+     */
     public void setCurrentR(ArrayList<String> currentR) {
         this.currentR = currentR;
         this.setModificationDate();
     }
 
+    /**
+     * Modifica la fecha de modificación del sistema
+     */
     public void setModificationDate() {
         this.modificationDate = new Date() ;
     }
@@ -355,6 +433,13 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
     public void setTrash(ArrayList<trash_20946887_LaraVidal> trash) {
         this.trash = trash;
     }
+
+    /**
+     * Agregar elementos a los drives del sistema.
+     *
+     * @param elements los elementos a agregar a los drives
+     * @param target   el destino de los archivos
+     */
     public void addToDrives(ArrayList<element_20946887_LaraVidal> elements, ArrayList<String> target) {
         System.out.println(elements);
         System.out.println(target);
@@ -374,6 +459,11 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
         this.setDrives(newDrives);
     }
 
+    /**
+     * Eliminar elementos de los drives.
+     *
+     * @param pattern el patrón de nombre de los archivos a eliminar
+     */
     public void removeFromDrives(String pattern) {
         ArrayList<String> route = this.getCurrentR();
         ArrayList<drive_20946887_LaraVidal> newDrives = new ArrayList<>();
@@ -391,6 +481,12 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
         this.setModificationDate();
     }
 
+    /**
+     * Renombrar un elemento del drive.
+     *
+     * @param oldName el antiguo nombre
+     * @param newName el nuevo nombre
+     */
     public void renToDrives(String oldName, String newName) {
         ArrayList<String> route = this.getCurrentR();
         ArrayList<drive_20946887_LaraVidal> newDrives = new ArrayList<>();
@@ -408,6 +504,12 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
 
     }
 
+    /**
+     * Obtener elementos de los drives.
+     *
+     * @param pattern el patrón de los elementos a obtener
+     * @return los elementos con el patrón especificado
+     */
     public ArrayList<element_20946887_LaraVidal> getFromDrives(String pattern) {
         ArrayList<String> route = this.getCurrentR();
         System.out.println(this.drives.toString());
@@ -445,6 +547,13 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
             }
         }
     }
+
+    /**
+     * Añadir a la papelera.
+     *
+     * @param elements los elementos a agregar
+     * @param route    la ruta de los elementos
+     */
     public void addToTrash(ArrayList<element_20946887_LaraVidal> elements, ArrayList<String> route) {
         if (elements.size() == 0) {
             return;

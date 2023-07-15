@@ -10,12 +10,15 @@ public interface elementInterface_20946887_LaraVidal {
      * @return the name
      */
     String getName();
+
     /**
      * Cambia el nombre
      *
      * @param name the name
      */
     void setName(String name);
+
+
     /**
      * Cambia la passkey
      *
@@ -23,12 +26,6 @@ public interface elementInterface_20946887_LaraVidal {
      */
     void setPasskey(int passkey);
 
-    /**
-     * Gets creation date.
-     *
-     * @return the creation date
-     */
-    Date getCreationDate();
     /**
      * Cambia la fecha de modificación
      */
@@ -41,7 +38,6 @@ public interface elementInterface_20946887_LaraVidal {
      */
     void partialEncrypt(String password);
 
-
     /**
      * Encripta completamente un elemento
      *
@@ -49,24 +45,4 @@ public interface elementInterface_20946887_LaraVidal {
      */
     void fullEncrypt(String password);
 
-    /**
-     * Desencripta parcialmente un elemento
-     *
-     * @param password la contraseña para la encriptación
-     */
-    void partialDecrypt(String password);
-
-    /**
-     * Desencripta completamente un elemento
-     *
-     * @param password la contraseña para la desencriptación
-     */
-    void fullDecrypt(String password);
-    /**
-     * Name matches boolean.
-     *
-     * @param pattern the pattern
-     * @return the boolean
-     */
-    boolean nameMatches(String pattern);
 }

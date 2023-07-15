@@ -15,25 +15,25 @@ import java.util.Comparator;
  */
 public class drive_20946887_LaraVidal extends content_20946887_LaraVidal implements hasContent_20946887_LaraVidal{
     /**
-     * The Letter.
+     * La letra del drive
      */
     String letter;
     /**
-     * The Name.
+     * El nombre del drive
      */
     String name;
     /**
-     * The Capacity.
+     * La capacidad del drive.
      */
     int capacity;
 
 
     /**
-     * Instantiates a new Drive 20946887 lara vidal.
+     * Instancia un drive
      *
-     * @param letter   the letter
-     * @param name     the name
-     * @param capacity the capacity
+     * @param letter   la letra del drive
+     * @param name     el nombre del drive
+     * @param capacity la capacidad del drive
      */
     public drive_20946887_LaraVidal(String letter, String name, Integer capacity) {
         super();
@@ -43,9 +43,9 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
     }
 
     /**
-     * Gets letter.
+     * Obtiene la letra del drive
      *
-     * @return the letter
+     * @return la letra del drive
      */
     public String getLetter() {
         return letter;
@@ -53,29 +53,45 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
 
 
     /**
-     * Sets name.
+     * Cambia el nombre del drive
      *
-     * @param name the name
+     * @param name el nuevo nombre
      */
     public void setName(String name) {
         this.name = name;
     }
 
 
-
-    @Override
+    /**
+     * Obtiene el contenido del drive
+     *
+     * @return el contenido del drive
+     */
     public ArrayList<element_20946887_LaraVidal> getContent() {
         return content;
     }
 
-
-    @Override
-    public void setContent(ArrayList<element_20946887_LaraVidal> newContent) {
+    /**
+     * Cambia el contenido del drive
+     *
+     * @param content el nuevo contenido del drive
+     */
+    public void setContent(ArrayList<element_20946887_LaraVidal> content) {
         this.content = content;
     }
 
 
-    @Override
+
+    public String toString() {
+        return "drive_20946887_LaraVidal{" +
+                "letter='" + letter + '\'' +
+                ", name='" + name + '\'' +
+                ", capacity=" + capacity +
+                ", content=" + content +
+                '}';
+    }
+
+
     public void addToRoute(ArrayList<element_20946887_LaraVidal> elements, ArrayList<String> route) {
         if (route.size() == 0) {
             this.addToContent(elements);
@@ -140,22 +156,22 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
 
     }
 
-    @Override
-    public void grepFromRoute(String phrase, ArrayList<String> route) {
+    
+    public void grepFromRoute(String phrase, ArrayList<String>route) {
         if (route.size() == 0) {
-            for (element_20946887_LaraVidal element : this.content) {
+            for (element_20946887_LaraVidal element: this.content) {
                 if (element instanceof file_20946887_LaraVidal) {
                     System.out.printf("%s:%n", element.getName());
-                    ((file_20946887_LaraVidal) element).grep(phrase);
+                    ((file_20946887_LaraVidal)element).grep(phrase);
                 }
             }
             return;
         }
         if (route.size() > 1) {
-            for (element_20946887_LaraVidal element : this.content) {
+            for (element_20946887_LaraVidal element: this.content) {
                 if (element instanceof folder_20946887_LaraVidal && element.getName().equals(route.get(0))) {
                     route.remove(0);
-                    ((folder_20946887_LaraVidal) element).grepFromRoute(phrase, route);
+                    ((folder_20946887_LaraVidal)element).grepFromRoute(phrase, route);
                     return;
                 }
             }
@@ -164,25 +180,24 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
         }
         // Repetición de código para permitir retroalimentar el error de ruta
         // Caso route.size() == 1
-        for (element_20946887_LaraVidal element : this.content) {
+        for (element_20946887_LaraVidal element: this.content) {
             if (element instanceof folder_20946887_LaraVidal && element.getName().equals(route.get(0))) {
                 route.remove(0);
-                ((folder_20946887_LaraVidal) element).grepFromRoute(phrase, route);
+                ((folder_20946887_LaraVidal)element).grepFromRoute(phrase, route);
                 return;
             }
-            if (element instanceof file_20946887_LaraVidal && element.nameMatches(route.get(0))) {
+            if (element instanceof file_20946887_LaraVidal && element.nameMatches(route.get(0))){
                 System.out.printf("%s:%n", element.getName());
-                ((file_20946887_LaraVidal) element).grep(phrase);
+                ((file_20946887_LaraVidal)element).grep(phrase);
             }
         }
     }
 
-    @Override
     public boolean checkRouteExists(ArrayList<String> route) {
         if (route.size() == 0) {
             return true;
         }
-        for (element_20946887_LaraVidal element : this.content) {
+        for (element_20946887_LaraVidal element: this.content) {
             if (element.getName().equals(route.get(0)) && element instanceof folder_20946887_LaraVidal) {
                 route.remove(0);
                 folder_20946887_LaraVidal folder = (folder_20946887_LaraVidal) element;
@@ -191,11 +206,10 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
         }
         return false;
     }
-
     @Override
     public void removeFromContent(String pattern) {
         ArrayList<element_20946887_LaraVidal> elements = new ArrayList<>();
-        for (element_20946887_LaraVidal element : this.content) {
+        for (element_20946887_LaraVidal element: this.content) {
             if (!element.nameMatches(pattern)) {
                 elements.add(element);
             }
@@ -209,7 +223,7 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
             return;
         }
         ArrayList<element_20946887_LaraVidal> elements = new ArrayList<>();
-        for (element_20946887_LaraVidal element : this.content) {
+        for (element_20946887_LaraVidal element: this.content) {
             if (element.getName().equals(oldName)) {
                 element.setName(newName);
             }
@@ -221,9 +235,9 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
     @Override
     public ArrayList<element_20946887_LaraVidal> getFromContent(String pattern) {
         ArrayList<element_20946887_LaraVidal> elements = new ArrayList<>();
-        for (element_20946887_LaraVidal element : this.content) {
+        for (element_20946887_LaraVidal element: this.content) {
             if (element.nameMatches(pattern)) {
-                elements.add(element);
+                 elements.add(element);
             }
         }
         return elements;
@@ -241,7 +255,7 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
     @Override
     public void addToContent(ArrayList<element_20946887_LaraVidal> newElements) {
         ArrayList<String> names = new ArrayList<>();
-        for (element_20946887_LaraVidal element : newElements) {
+        for (element_20946887_LaraVidal element: newElements) {
             names.add(element.getName());
         }
         for (element_20946887_LaraVidal element : this.content) {
@@ -255,7 +269,7 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
         System.out.println("El/Los elementos fueron añadidos correctamente");
     }
 
-    @Override
+    
     public void encryptRoute(String password, String pattern, ArrayList<String> route) {
         if (route.size() == 0) {
             this.encryptContent(password, pattern);
@@ -263,7 +277,7 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
         }
         ArrayList<element_20946887_LaraVidal> newContent = this.getContent();
         String folderName = route.get(0);
-        for (element_20946887_LaraVidal element : newContent) {
+        for (element_20946887_LaraVidal element: newContent) {
             if (element.getName().equals(folderName) && element instanceof folder_20946887_LaraVidal) {
                 route.remove(0);
                 ((folder_20946887_LaraVidal) element).encryptRoute(password, pattern, route);
@@ -272,7 +286,6 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
         this.setContent(newContent);
     }
 
-    @Override
     public void decryptRoute(String password, String pattern, ArrayList<String> route) {
         if (route.size() == 0) {
             this.decryptContent(password, pattern);
@@ -280,7 +293,7 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
         }
         ArrayList<element_20946887_LaraVidal> newContent = this.getContent();
         String folderName = route.get(0);
-        for (element_20946887_LaraVidal element : newContent) {
+        for (element_20946887_LaraVidal element: newContent) {
             if (element.getName().equals(folderName) && element instanceof folder_20946887_LaraVidal) {
                 route.remove(0);
                 ((folder_20946887_LaraVidal) element).decryptRoute(password, pattern, route);
@@ -289,25 +302,29 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
         this.setContent(newContent);
     }
 
-    @Override
     public void encryptContent(String password, String pattern) {
-        for (element_20946887_LaraVidal element : this.content) {
+        System.out.println("Encriptando contenido");
+        ArrayList<element_20946887_LaraVidal> newContent = this.getContent();
+        for (element_20946887_LaraVidal element: newContent) {
             if (element.nameMatches(pattern)) {
+                System.out.println("Encriptando " + element.getName());
                 element.partialEncrypt(password);
             }
         }
+        this.setContent(newContent);
     }
 
-    @Override
     public void decryptContent(String password, String pattern) {
-        for (element_20946887_LaraVidal element: this.content) {
+        ArrayList<element_20946887_LaraVidal> newContent = this.getContent();
+        for (element_20946887_LaraVidal element: newContent) {
             if (element.nameMatches(pattern)) {
                 element.partialDecrypt(password);
             }
         }
+        this.setContent(newContent);
     }
 
-    @Override
+    
     public void dirToRoute(ArrayList<String> route, ArrayList<String> args) {
         if (route.size() == 0) {
             this.dirContent(args, "");
@@ -321,7 +338,7 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
             }
         }
     }
-    @Override
+
     public void dirContent(ArrayList<String> args, String offset) {
         if (args.contains("/o N")) {
             this.content.sort(Comparator.comparing(element_20946887_LaraVidal::getName));
@@ -355,4 +372,3 @@ public class drive_20946887_LaraVidal extends content_20946887_LaraVidal impleme
         }
     }
 }
-

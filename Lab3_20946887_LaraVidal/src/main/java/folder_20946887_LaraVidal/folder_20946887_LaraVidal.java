@@ -118,6 +118,7 @@ public class folder_20946887_LaraVidal extends element_20946887_LaraVidal implem
             }
         }
         return new ArrayList<>();
+
     }
 
 
@@ -136,7 +137,6 @@ public class folder_20946887_LaraVidal extends element_20946887_LaraVidal implem
         }
         System.out.println("La ruta no entregada no existe");
     }
-
 
     public void decryptRoute(String password, String pattern, ArrayList<String> route) {
         if (route.size() == 0) {
@@ -157,7 +157,6 @@ public class folder_20946887_LaraVidal extends element_20946887_LaraVidal implem
     public void encryptContent(String password, String pattern) {
         for (element_20946887_LaraVidal element: this.content) {
             if (element.nameMatches(pattern)) {
-                this.setModificationDate();
                 element.partialEncrypt(password);
             }
         }
@@ -165,7 +164,6 @@ public class folder_20946887_LaraVidal extends element_20946887_LaraVidal implem
     public void decryptContent(String password, String pattern) {
         for (element_20946887_LaraVidal element: this.content) {
             if (element.nameMatches(pattern)) {
-                this.setModificationDate();
                 element.partialDecrypt(password);
             }
         }
@@ -230,7 +228,6 @@ public class folder_20946887_LaraVidal extends element_20946887_LaraVidal implem
             }
         }
         this.setContent(elements);
-        this.setModificationDate();
     }
 
 
@@ -243,11 +240,12 @@ public class folder_20946887_LaraVidal extends element_20946887_LaraVidal implem
         for (element_20946887_LaraVidal element: this.content) {
             if (element.getName().equals(oldName)) {
                 element.setName(newName);
-                this.setModificationDate();
                 System.out.println("El archivo fue renombrado exitosamente");
                 return;
             }
+
         }
+
     }
 
 
@@ -285,7 +283,6 @@ public class folder_20946887_LaraVidal extends element_20946887_LaraVidal implem
         }
 
         this.setContent(newElements);
-        this.setModificationDate();
         System.out.println("El/Los elementos fueron añadidos correctamente");
     }
 
@@ -299,7 +296,6 @@ public class folder_20946887_LaraVidal extends element_20946887_LaraVidal implem
             if (element instanceof folder_20946887_LaraVidal && element.getName().equals(route.get(0))) {
                 route.remove(0);
                 ((folder_20946887_LaraVidal) element).dirToRoute(route, args);
-                return;
             }
         }
     }
@@ -337,6 +333,5 @@ public class folder_20946887_LaraVidal extends element_20946887_LaraVidal implem
             }
         }
     }
-
 }
 

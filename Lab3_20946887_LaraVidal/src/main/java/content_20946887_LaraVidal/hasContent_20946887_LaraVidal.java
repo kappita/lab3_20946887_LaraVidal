@@ -5,155 +5,147 @@ import element_20946887_LaraVidal.element_20946887_LaraVidal;
 import java.util.ArrayList;
 
 /**
- * The interface Has content 20946887 lara vidal.
+ * Interface hasContent
  */
 public interface hasContent_20946887_LaraVidal {
     /**
-     * Sets content.
+     * Agrega elementos a la ruta
      *
-     * @param newContent the content
+     * @param element los elementos
+     * @param route   la ruta destino
      */
-    void setContent(ArrayList<element_20946887_LaraVidal> newContent);
+    void addToRoute(ArrayList<element_20946887_LaraVidal> elements, ArrayList<String> route);
 
     /**
-     * Gets content.
+     * Renombra un elemento en la ruta.
      *
-     * @return the content
-     */
-    ArrayList<element_20946887_LaraVidal> getContent();
-    /**
-     * Add to route.
-     *
-     * @param element the element
-     * @param route   the route
-     */
-    void addToRoute(ArrayList<element_20946887_LaraVidal> element, ArrayList<String> route);
-
-    /**
-     * Ren to route.
-     *
-     * @param oldName the old name
-     * @param newName the new name
-     * @param route   the route
+     * @param oldName el nombre original
+     * @param newName el nuevo nombre
+     * @param route   la ruta destino
      */
     void renToRoute(String oldName, String newName, ArrayList<String> route);
 
     /**
-     * Del from route.
+     * Elimina elementos en la ruta.
      *
-     * @param pattern the pattern
-     * @param route   the route
+     * @param pattern patrón de nombre
+     * @param route   la ruta destino
      */
     void delFromRoute(String pattern, ArrayList<String> route);
 
     /**
-     * Gets from route.
+     * Obtiene elementos de la ruta entregada
      *
-     * @param pattern the pattern
-     * @param route   the route
-     * @return the from route
+     * @param pattern patrón de nombre
+     * @param route   la ruta destino
+     * @return los elementos de la ruta
      */
     ArrayList<element_20946887_LaraVidal> getFromRoute(String pattern, ArrayList<String> route);
 
     /**
-     * Check route exists boolean.
+     * Revisa si la ruta existe
      *
-     * @param route the route
-     * @return the boolean
+     * @param route la ruta destino
+     * @return el resultado
      */
     boolean checkRouteExists(ArrayList<String> route);
 
     /**
-     * Add to content.
+     * Agrega al contenido
      *
      * @param element the element
      */
     void addToContent(ArrayList<element_20946887_LaraVidal> element);
 
     /**
-     * Remove from content.
+     * Elimina del contenido
      *
-     * @param pattern the pattern
+     * @param pattern patrón de nombre
      */
     void removeFromContent(String pattern);
 
     /**
-     * Rename from content.
+     * Renombra un elemento del contenido
      *
-     * @param oldName the old name
-     * @param newName the new name
+     * @param oldName el nombre original
+     * @param newName el nuevo nombre
      */
     void renameFromContent(String oldName, String newName);
 
     /**
-     * Gets from content.
+     * Obtiene elementos del contenido
      *
-     * @param pattern the pattern
-     * @return the from content
+     * @param pattern el patrón del nombre
+     * @return los elementos del contenido
      */
     ArrayList<element_20946887_LaraVidal> getFromContent(String pattern);
 
     /**
-     * Gets names from content.
+     * Obtiene los nombres de los elementos del contenido
      *
-     * @return the names from content
+     * @return los nombres
      */
     ArrayList<String> getNamesFromContent();
 
     /**
-     * Dir to route.
+     * Grep hacia la ruta.
      *
-     * @param route the route
-     * @param args  the args
+     * @param phrase la frase a buscar
+     * @param route  la ruta destino
      */
-    void dirToRoute(ArrayList<String> route, ArrayList<String> args);
+    void grepFromRoute(String phrase, ArrayList<String>route);
 
     /**
-     * Aplicar dir al contenido.
+     * Encriptar hacia la ruta.
      *
-     * @param args   Argumentos para la lectura de archivos
-     * @param offset offset de caracteres para el formateo
-     */
-    void dirContent(ArrayList<String> args, String offset);
-
-    /**
-     * Encripta hacia la ruta entregada.
-     *
-     * @param password la contraseña de encriptación
-     * @param pattern  el patrón de archivos a encriptar
-     * @param route    la ruta en la que se encripta
+     * @param password la contraseña
+     * @param pattern  el patrón
+     * @param route    la ruta destino
      */
     void encryptRoute(String password, String pattern, ArrayList<String> route);
 
     /**
-     * Desencripta hacia la ruta entregada.
+     * Encriptar el contenido
      *
-     * @param password la contraseña de desencriptación
-     * @param pattern  el patrón de archivos a desencriptar
-     * @param route    la ruta en la que se desencripta
-     */
-    void decryptRoute(String password, String pattern, ArrayList<String> route);
-    /**
-     * Encripta el contenido del objeto.
-     *
-     * @param password la contraseña de encriptación
-     * @param pattern  el patrón de archivos a encriptar
+     * @param password la contraseña
+     * @param pattern  el patrón
+     
      */
     void encryptContent(String password, String pattern);
+
     /**
-     * Desencripta el contenido del objeto.
+     * Desencriptar hacia la ruta
      *
-     * @param password la contraseña de desencriptación
-     * @param pattern  el patrón de archivos a desencriptar
+     * @param password la contraseña
+     * @param pattern  el patrón
+     * @param route    la ruta destino
+     */
+    void decryptRoute(String password, String pattern, ArrayList<String> route);
+
+    /**
+     * Desencriptar el contenido
+     *
+     * @param password la contraseña
+     * @param pattern  el patrón
+     * @param route    la ruta destino
      */
     void decryptContent(String password, String pattern);
 
     /**
-     * Grep desde una ruta.
+     * Dir hacia la ruta.
      *
-     * @param phrase la frase a ser buscada
-     * @param route  la ruta, incluyendo el patrón
+     * @param route la ruta de destino
+     * @param args  los argumentos
      */
-    void grepFromRoute(String phrase, ArrayList<String>route);
-    
+    void dirToRoute(ArrayList<String> route, ArrayList<String> args);
+
+    /**
+     * Dir en el contenido
+     *
+     * @param args  los argumentos
+     * @param offset el offset para la impresión
+     */
+    void dirContent(ArrayList<String> args, String offset);
+
+
 }

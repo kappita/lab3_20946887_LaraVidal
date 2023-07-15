@@ -1,32 +1,34 @@
 package element_20946887_LaraVidal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import file_20946887_LaraVidal.file_20946887_LaraVidal;
 import folder_20946887_LaraVidal.folder_20946887_LaraVidal;
 
+/**
+ * The type Element 20946887 lara vidal.
+ */
 public class element_20946887_LaraVidal implements elementInterface_20946887_LaraVidal{
     /**
-     * The Name.
+     * El nombre del elemento
      */
     protected String name;
     /**
-     * The Creation date.
+     * La fecha de creación del elemento
      */
     Date creationDate;
     /**
-     * The Modification date.
+     * La fecha de modificación del elemento
      */
     Date modificationDate;
     /**
-     * The Passkey.
+     * La clave del archivo
      */
     int passkey;
 
     /**
-     * Instantiates a new Element 20946887 lara vidal.
+     * Instancia un nuevo elemento.
      *
-     * @param name the name
+     * @param name el nombre del elemento
      */
     public element_20946887_LaraVidal(String name) {
         this.name = name;
@@ -46,25 +48,28 @@ public class element_20946887_LaraVidal implements elementInterface_20946887_Lar
         this.setModificationDate();
     }
 
-
-    public int getPasskey() {
-        return this.passkey;
-    }
-
     public void setPasskey(int passkey) {
         this.passkey = passkey;
         this.setModificationDate();
     }
 
+    /**
+     * Obtiene la fecha de creación.
+     *
+     * @return la fecha de creación
+     */
+    public Date getCreationDate() {
+        return this.creationDate;
+    }
     public void setModificationDate() {
         this.modificationDate = new Date();
     }
 
     /**
-     * Name matches boolean.
+     * Revisa si el nombre coincide con el patrón.
      *
-     * @param pattern the pattern
-     * @return the boolean
+     * @param pattern el patrón
+     * @return el resultado
      */
     public boolean nameMatches(String pattern) {
         if (pattern.equals("*")) {
@@ -81,6 +86,25 @@ public class element_20946887_LaraVidal implements elementInterface_20946887_Lar
         return matchStrings(nameParts[nameParts.length - 1], patternParts[patternParts.length - 1]) &&
                 matchStrings(nameParts[nameParts.length - 2], patternParts[patternParts.length - 2]);
 
+    }
+
+    private boolean matchStrings(String firstWord, String secondWord) {
+        char[] firstChars = firstWord.toCharArray();
+        char[] secondChars = secondWord.toCharArray();
+        int i = 0;
+        if (secondChars.length > firstChars.length) {
+            return false;
+        }
+        while (i < secondChars.length) {
+            if (secondChars[i] == '*') {
+                return true;
+            }
+            if (secondChars[i] != firstChars[i]) {
+                return false;
+            }
+            i++;
+        }
+        return true;
     }
 
     public void partialEncrypt(String password) {
@@ -147,26 +171,6 @@ public class element_20946887_LaraVidal implements elementInterface_20946887_Lar
         }
         ((file_20946887_LaraVidal) this).setContent(this.decryptString(((file_20946887_LaraVidal)this).getContent(), this.getEncryptionValue(password)));
     }
-
-    private boolean matchStrings(String firstWord, String secondWord) {
-        char[] firstChars = firstWord.toCharArray();
-        char[] secondChars = secondWord.toCharArray();
-        int i = 0;
-        if (secondChars.length > firstChars.length) {
-            return false;
-        }
-        while (i < secondChars.length) {
-            if (secondChars[i] == '*') {
-                return true;
-            }
-            if (secondChars[i] != firstChars[i]) {
-                return false;
-            }
-            i++;
-        }
-        return true;
-    }
-
     private int getPasskeyFromString(String word) {
         int total = 0;
         char[] characters = word.toCharArray();
@@ -184,7 +188,6 @@ public class element_20946887_LaraVidal implements elementInterface_20946887_Lar
         }
         return total % 5;
     }
-
     private String encryptString(String word, int value) {
         char[] characters = word.toCharArray();
         for (int i = 0; i < characters.length; i++) {
@@ -192,7 +195,7 @@ public class element_20946887_LaraVidal implements elementInterface_20946887_Lar
         }
         return new String(characters);
     }
-    
+
     private String decryptString(String word, int value) {
         char[] characters = word.toCharArray();
         for (int i = 0; i < characters.length; i++) {
@@ -200,5 +203,4 @@ public class element_20946887_LaraVidal implements elementInterface_20946887_Lar
         }
         return new String(characters);
     }
-
 }

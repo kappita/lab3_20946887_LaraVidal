@@ -13,10 +13,10 @@ public class file_20946887_LaraVidal extends element_20946887_LaraVidal {
 
 
     /**
-     * Instantiates a new File 20946887 lara vidal.
+     * Instancia un nuevo archivo.
      *
-     * @param name    the name
-     * @param content the content
+     * @param name    el nombre del archivo
+     * @param content el contenido del archivo
      */
     public file_20946887_LaraVidal(String name, String content) {
         super(name);
@@ -25,25 +25,26 @@ public class file_20946887_LaraVidal extends element_20946887_LaraVidal {
     }
 
     /**
-     * Obtiene el contenido.
+     * Obtiene el contenido del archivo.
      *
-     * @return the content
+     * @return el contenido
      */
     public String getContent() {
         return this.content;
     }
 
     /**
-     * Modifica el contenido
+     * Cambia el contenido del archivo
      *
-     * @param newContent el nuevo contenido para el archivo
+     * @param newContent el nuevo contenido
      */
     public void setContent(String newContent) {
         this.content = newContent;
         this.setModificationDate();
     }
+
     /**
-     * Grep del contenido del archivo
+     * Grep en el contenido del archivo.
      *
      * @param phrase la frase a buscar
      */
@@ -61,9 +62,10 @@ public class file_20946887_LaraVidal extends element_20946887_LaraVidal {
                     }
                 }
                 if (match) {
-                    // Por algún motivo printf modifica el valor de i, por lo que se escogió concatenación.
+                    // Por algún motivo printf modifica el valor de i
                     System.out.println("Ocurrencia encontrada en la posición [" + i + " " + (i+phraseChars.length-1) + "]");
                 }
+
             }
         }
     }
