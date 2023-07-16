@@ -3,11 +3,11 @@ import element_20946887_LaraVidal.element_20946887_LaraVidal;
 
 
 /**
- * The type File 20946887 lara vidal.
+ * El tipo archivo
  */
 public class file_20946887_LaraVidal extends element_20946887_LaraVidal {
     /**
-     * The Content.
+     * El contenido del archivo.
      */
     String content;
 

@@ -147,5 +147,4 @@ public interface hasContent_20946887_LaraVidal {
      */
     void dirContent(ArrayList<String> args, String offset);
 
-
 }

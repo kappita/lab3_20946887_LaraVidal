@@ -53,11 +53,7 @@ public class element_20946887_LaraVidal implements elementInterface_20946887_Lar
         this.setModificationDate();
     }
 
-    /**
-     * Obtiene la fecha de creación.
-     *
-     * @return la fecha de creación
-     */
+
     public Date getCreationDate() {
         return this.creationDate;
     }
@@ -136,11 +132,6 @@ public class element_20946887_LaraVidal implements elementInterface_20946887_Lar
         ((file_20946887_LaraVidal) this).setContent(this.encryptString(((file_20946887_LaraVidal)this).getContent(), this.getEncryptionValue(password)));
     }
 
-    /**
-     * Partial decrypt.
-     *
-     * @param password the password
-     */
     public void partialDecrypt(String password) {
         if (!(this.getPasskeyFromString(password) == this.passkey)) {
             System.out.println("Error al desencriptar: contraseña incorrecta");
@@ -159,7 +150,7 @@ public class element_20946887_LaraVidal implements elementInterface_20946887_Lar
         ((file_20946887_LaraVidal) this).setContent(this.decryptString(((file_20946887_LaraVidal)this).getContent(), this.getEncryptionValue(password)));
     }
 
-    private void fullDecrypt(String password) {
+    public void fullDecrypt(String password) {
         this.setName(this.decryptString(this.getName(), this.getEncryptionValue(password)));
         if (this.getClass() == folder_20946887_LaraVidal.class) {
             ArrayList<element_20946887_LaraVidal> content = ((folder_20946887_LaraVidal) this).getContent();
@@ -204,3 +195,4 @@ public class element_20946887_LaraVidal implements elementInterface_20946887_Lar
         return new String(characters);
     }
 }
+

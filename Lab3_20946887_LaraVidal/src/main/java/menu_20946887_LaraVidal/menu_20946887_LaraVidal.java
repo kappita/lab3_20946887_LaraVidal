@@ -7,14 +7,20 @@ import fs_20946887_LaraVidal.fs_20946887_LaraVidal;
 
 import file_20946887_LaraVidal.*;
 
+/**
+ * El tipo menú
+ */
 public class menu_20946887_LaraVidal {
+    /**
+     * Función para iniciar el menú
+     */
     public void start() {
         Scanner input = new Scanner(System.in);
         bienvenida();
         String name = input.next();
         fs_20946887_LaraVidal fs = new fs_20946887_LaraVidal(name);
 
-        final int MENU_EXIT_OPTION = 5;
+        int MENU_EXIT_OPTION = 5;
 
         int opcion1;
         int opcion2;
@@ -322,7 +328,7 @@ public class menu_20946887_LaraVidal {
         } while (opcion1 != MENU_EXIT_OPTION);
     }
 
-    private static void printMenu() {
+    private void printMenu() {
         System.out.println("Menú principal\n");
         System.out.print("1. Usuarios \n");
         System.out.print("2. Drives\n");
@@ -332,7 +338,7 @@ public class menu_20946887_LaraVidal {
         System.out.print("\nEscoja con qué interactuar: ");
     }
 
-    private static void menuUsuario() {
+    private void menuUsuario() {
         System.out.println("Menú de usuarios ");
         System.out.println("1. Registrar usuario");
         System.out.println("2. Iniciar sesión");
@@ -341,7 +347,7 @@ public class menu_20946887_LaraVidal {
         System.out.print("\nEscoja qué acción realizar: ");
     }
 
-    private static void menuDrives() {
+    private void menuDrives() {
         System.out.println("Menú de drives");
         System.out.println("1. Añadir drive");
         System.out.println("2. Seleccionar drive");
@@ -350,7 +356,7 @@ public class menu_20946887_LaraVidal {
         System.out.print("\nEscoja qué acción realizar: ");
     }
 
-    private static void menuArchivos() {
+    private void menuArchivos() {
         System.out.println("Menú de archivos y carpetas");
         System.out.println("1. Cambiar ruta");
         System.out.println("2. Ver archivos");
@@ -367,7 +373,7 @@ public class menu_20946887_LaraVidal {
 
     }
 
-    private static void menuAnadirArchivo() {
+    private void menuAnadirArchivo() {
         System.out.println("Menú de añadir archivo");
         System.out.println("1. Añadir archivo de texto");
         System.out.println("2. Añadir archivo tipo documento");
@@ -375,13 +381,14 @@ public class menu_20946887_LaraVidal {
         System.out.println("4. Salir del menú de añadir archivo");
     }
 
-    private static void menuPapelera() {
+    private void menuPapelera() {
         System.out.println("Menú de papelera");
         System.out.println("1. Ver papelera");
         System.out.println("2. Restaurar de la papelera");
+        System.out.println("3. Salir del menú de papelera");
     }
 
-    private static void parametrosDir() {
+    private void parametrosDir() {
         System.out.println("Los parámetros disponibles para usar en Dir son: ");
         System.out.println("'/a' muestra los elementos ocultos");
         System.out.println("'/s' muestra los subdirectorios");
@@ -391,7 +398,7 @@ public class menu_20946887_LaraVidal {
         System.out.println("'/o -D' ordena los archivos ordenados por fecha de creación de manera ascendente");
 
     }
-    private static void bienvenida() {
+    private void bienvenida() {
         System.out.println("Bienvenido al sistema de archivos");
         System.out.println("Primero, escoja el nombre de su sistema de archivos");
         System.out.println("Nombre del sistema: ");

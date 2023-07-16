@@ -141,6 +141,7 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
         }
 
         this.setCurrentU(name);
+        System.out.println("Ha iniciado sesión con: " + name);
     }
 
     public void logout() {
@@ -266,6 +267,7 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
             System.out.println("Necesita seleccionar un drive para interactuar con los archivos");
             return;
         }
+        System.out.println("------ DIRECTORIO DE ARCHIVOS -------");
         ArrayList<String> route = this.getCurrentR();
         for (drive_20946887_LaraVidal drive: this.getDrives()) {
             if (drive.getLetter().equals(route.get(0))) {
@@ -274,6 +276,7 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
                 return;
             }
         }
+        System.out.println("-------------------------------------");
 
 
     }
@@ -441,12 +444,10 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
      * @param target   el destino de los archivos
      */
     public void addToDrives(ArrayList<element_20946887_LaraVidal> elements, ArrayList<String> target) {
-        System.out.println(elements);
-        System.out.println(target);
+
         ArrayList<drive_20946887_LaraVidal> newDrives = new ArrayList<>();
         String letter = target.get(0);
         for (drive_20946887_LaraVidal drive: this.getDrives()) {
-            System.out.println(drive.getLetter());
             if (drive.getLetter().equals(letter)) {
                 target.remove(0);
                 drive.addToRoute(elements, target);
@@ -512,8 +513,6 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
      */
     public ArrayList<element_20946887_LaraVidal> getFromDrives(String pattern) {
         ArrayList<String> route = this.getCurrentR();
-        System.out.println(this.drives.toString());
-        System.out.println(this.currentR.toString());
         for (drive_20946887_LaraVidal drive: this.getDrives()) {
             if (drive.getLetter().equals(route.get(0))) {
                 route.remove(0);
