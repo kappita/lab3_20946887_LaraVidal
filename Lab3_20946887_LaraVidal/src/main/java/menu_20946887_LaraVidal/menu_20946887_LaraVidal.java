@@ -142,6 +142,10 @@ public class menu_20946887_LaraVidal {
 
 
                                 paramList = new ArrayList<>(List.of(params.split("\\s+")));
+                                if (paramList.contains("/h")) {
+                                    parametrosDir();
+                                    break;
+                                }
 
                                 fs.dir(paramList);
 
@@ -318,7 +322,7 @@ public class menu_20946887_LaraVidal {
                     break;
 
                 case 5:
-                    System.out.println("Bye.. Que la Fuerza te acompañe");
+                    System.out.println("Tenga un buen día");
                     System.exit(0);
                     break;
                 default:

@@ -273,10 +273,11 @@ public class fs_20946887_LaraVidal implements fsInterface_20946887_LaraVidal {
             if (drive.getLetter().equals(route.get(0))) {
                 route.remove(0);
                 drive.dirToRoute(route, args);
+                System.out.println("-------------------------------------");
                 return;
             }
         }
-        System.out.println("-------------------------------------");
+
 
 
     }

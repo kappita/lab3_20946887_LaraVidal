@@ -5,7 +5,7 @@ import file_20946887_LaraVidal.file_20946887_LaraVidal;
 import java.util.ArrayList;
 
 /**
- * The interface Fs interface 20946887 lara vidal.
+ * La interfaz de fs.
  */
 public interface fsInterface_20946887_LaraVidal {
     /**

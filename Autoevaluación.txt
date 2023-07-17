@@ -1,0 +1,38 @@
+Requisitos no funcionales:
+
+Autoevaluación: Obligatorio
+Lenguaje: Obligatorio
+Versión: Obligatorio
+Interacciones con el programa: Obligatorio
+Uso del paradigma: Obligatorio
+Prerrequisitos: Obligatorio
+Documentación: 1
+Organización del código: 0.75
+Diagrama de análisis: 0.75
+Diagrama de diseño: 1
+Uso de git: 0.75
+
+
+Requisitos funcionales:
+
+TDAs: 1
+constructor: 1
+add-drive: 1
+register: 1
+login: 1
+logout: 1
+switch-drive: 1
+md (make directory): 1
+cd (change directory): 1
+add-file: 1
+del: 1
+copy: 1
+move: 1
+ren (rename): 1
+dir (directory): 1
+format: 1
+encrypt: 1
+decrypt: 1
+grep: 1
+view-trash: 1
+restore: 1
